@@ -13,3 +13,11 @@ def profile_list(request):
     else:
         messages.success(request, ("you must Be logged In to see this page..."))
         return redirect('home')
+
+def profile(request, pk):
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(user_id=pk)
+        return render(request, 'profile.html', {'profile': profile})
+    else:
+        messages.success(request, ("you must Be logged In to see this page..."))
+        return redirect('home')
