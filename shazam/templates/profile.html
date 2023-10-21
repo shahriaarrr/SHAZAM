@@ -8,16 +8,32 @@
             </div>
 
             <div class="col-4">
-                <strong>Hunters</strong><br/>
-                {% for hunting in profile.hunters.all %}
-                    <a href="{% url 'profile' hunting.user.id %}">@{{ hunting }}<a/><br/>
-                {% endfor %}
+                <div class="card">
+                  <h5 class="card-header">Hunters</h5>
+                  <div class="card-body">
+                    <p class="card-text">
+                        {% for hunting in profile.hunters.all %}
+                            <a href="{% url 'profile' hunting.user.id %}">@{{ hunting }}<a/><br/>
+                        {% endfor %}
+                    </p>
+                  </div>
+                </div>
                 <br/><br/>
 
-                <strong>Hunted By</strong><br/>
-                {% for hunting in profile.hunted_by.all %}
-                    <a href="{% url 'profile' hunting.user.id %}">@{{ hunting }}<a/><br/>
-                {% endfor %}
+                <div class="card">
+                  <h5 class="card-header">Hunted By</h5>
+                  <div class="card-body">
+                    <p class="card-text">
+                        {% for hunting in profile.hunted_by.all %}
+                            <a href="{% url 'profile' hunting.user.id %}">@{{ hunting }}<a/><br/>
+                        {% endfor %}
+                    </p>
+                  </div>
+                </div>
+
+
+
+
             <div/>
         <div/>
     <div/>
