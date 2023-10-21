@@ -2,4 +2,13 @@
 
 {% block content %}
     <h1>Profile List!</h1>
+
+    {% if profiles %}
+        {% for profile in profiles %}
+            Username: {{ profile.user.username }}<br/>
+            Link: @{{ profile.user.username | lower }}<br/>
+            Last Updated: {{ profile.date_modified }}
+            <br/><br/>
+        {% endfor %}
+    {% endif %}
 {% endblock %}
