@@ -1,12 +1,29 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1>{{ profile.user.username }}'s profile!</h1>
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-8">
+                <h1>{{ profile.user.username }}'s profile!</h1>
+            </div>
 
-    <strong>Hunters</strong><br/>
-    {% for hunting in profile.hunters.all %}
-        <a href="{% url 'profile' hunting.user.id %}">@{{ hunting }}<a/><br/>
-    {% endfor %}
-    <strong>Hunted By</strong>
+            <div class="col-4">
+                <strong>Hunters</strong><br/>
+                {% for hunting in profile.hunters.all %}
+                    <a href="{% url 'profile' hunting.user.id %}">@{{ hunting }}<a/><br/>
+                {% endfor %}
+                <br/><br/>
+
+                <strong>Hunted By</strong><br/>
+                {% for hunting in profile.hunted_by.all %}
+                    <a href="{% url 'profile' hunting.user.id %}">@{{ hunting }}<a/><br/>
+                {% endfor %}
+            <div/>
+        <div/>
+    <div/>
+
+
+
+
 
 {% endblock %}
