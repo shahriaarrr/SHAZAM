@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
     <h1>Profile List!</h1>
@@ -9,7 +10,7 @@
             <div class="card mb-3" style="max-width: 540px;">
               <div class="row g-0">
                 <div class="col-md-4">
-                  <img src="..." class="img-fluid rounded-start" alt="...">
+                  <img src="{% static 'images/default-profile.jpg' %}" class="img-fluid rounded-start" alt="profile img">
                 </div>
                 <div class="col-md-8">
                   <div class="card-body">
