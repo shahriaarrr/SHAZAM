@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.models import Group, User
-from .models import Profile
+from .models import Profile, Thunder
 # Register your models here.
 
 #remove group
@@ -22,4 +22,5 @@ admin.site.unregister(User)
 #register models
 admin.site.register(User, UserAdmin)
 
+admin.site.register(Thunder)
 
