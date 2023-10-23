@@ -19,7 +19,7 @@ def home(request):
 
 
         thunders = Thunder.objects.all().order_by("-created_at")
-        return render(request, 'home.html', {'thunders': thunders})
+        return render(request, 'home.html', {'thunders': thunders, 'form': form})
     else:
         thunders = Thunder.objects.all().order_by("-created_at")
         return render(request, 'home.html', {'thunders': thunders})

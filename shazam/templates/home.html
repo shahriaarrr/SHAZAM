@@ -14,11 +14,13 @@
 
         <div class="col-4">
             <div class="text-right" style="margin-top: 50px;">
-                <form method=POST>
-                    {% csrf_token %}
-
-                  <button type="submit" class="btn btn-secondary">Thunder</button>
-                </form>
+                {% if form %}
+                    <form method=POST>
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                      <button type="submit" class="btn btn-secondary">Thunder</button>
+                    </form>
+                {% endif %}
             </div>
         </div>
     </div>
