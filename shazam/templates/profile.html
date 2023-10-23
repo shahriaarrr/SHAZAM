@@ -9,8 +9,11 @@
                 {% if thunders %}
                     {% for thunder in thunders %}
                         <div class="alert alert-dark" role="alert">
-                          {{ thunder }}
-                        </div><br/><br/>
+                            {{ thunder.text }}<br/>
+                            <small class="text-muted">
+                                {{ thunder.created_at }} By {{ thunder.user.username }}
+                            </small>
+                        </div><br/>
                     {% endfor %}
                 {% endif %}
             </div>

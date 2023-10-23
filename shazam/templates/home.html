@@ -4,10 +4,14 @@
 <div class="container text-center">
     <div class="row">
         <div class="col-8">
-            <h1>Thunders</h1>
+            <h1>Thunders!</h1>
+            <br/>
             {% for thunder in thunders %}
                 <div class="alert alert-dark" role="alert">
-                    {{ thunder }}
+                    {{ thunder.text }}<br/>
+                    <small class="text-muted">
+                        {{ thunder.created_at }} By {{ thunder.user.username }}
+                    </small>
                 </div>
             {% endfor %}
         </div>
