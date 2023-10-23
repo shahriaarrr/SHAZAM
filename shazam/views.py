@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
 from .models import Profile, Thunder
 from .forms import ThunderForm
 # Create your views here.
@@ -53,3 +54,9 @@ def profile(request, pk):
     else:
         messages.success(request, ("you must Be logged In to see this page..."))
         return redirect('home')
+
+def login(request):
+    return render(request, 'login.html', {})
+
+def logout(request):
+    return render(request, 'logout.html', {})
