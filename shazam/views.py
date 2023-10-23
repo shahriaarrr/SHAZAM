@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login as auth_login
-from django.contrib.auth import authenticate, logout
+from django.contrib.auth import authenticate
+from django.contrib.auth import logout as auth_logout
 from .models import Profile, Thunder
 from .forms import ThunderForm
 # Create your views here.
@@ -63,13 +64,15 @@ def login(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             auth_login(request, user)
-            messages.success(request, (f"Welcome back {username}, let's hunt :)"))
+            messages.success(request, (f"Welcome back {username}👋, let's hunt :)"))
             return redirect('home')
         else:
-            messages.error(request, (f"There was an error in your username or password. please try again"))
+            messages.error(request, ("♻️There was an error in your username or password. please try again♻️"))
             return redirect('login')
     else:
         return render(request, 'login.html', {})
 
 def logout(request):
-    return render(request, 'logout.html', {})
+    auth_logout(request)
+    messages.success(request, (f"Goodbye Hunter, see you soon..."))
+    return redirect('home')
