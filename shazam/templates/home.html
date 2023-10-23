@@ -5,6 +5,8 @@
     <h1>Shaz</h1>
 
     {% for thunder in thunders %}
-        {{ thunder }}<br/><br/>
+        <div class="alert alert-dark" role="alert">
+          {{ thunder }}
+        </div><br/><br/>
     {% endfor %}
 {% endblock %}
