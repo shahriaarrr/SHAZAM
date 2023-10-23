@@ -19,6 +19,7 @@ def profile_list(request):
 def profile(request, pk):
     if request.user.is_authenticated:
         profile = Profile.objects.get(user_id=pk)
+        thunders = Thunder.objects.filter(user_id=pk)
 
         #post form
         if request.method == "POST":
@@ -32,7 +33,7 @@ def profile(request, pk):
 
             current_user_profile.save()
 
-        return render(request, 'profile.html', {'profile': profile})
+        return render(request, 'profile.html', {'profile': profile, 'thunders': thunders})
     else:
         messages.success(request, ("you must Be logged In to see this page..."))
         return redirect('home')

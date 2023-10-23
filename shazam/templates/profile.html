@@ -5,7 +5,17 @@
         <div class="row">
             <div class="col-8">
                 <h1>{{ profile.user.username }}'s profile!</h1>
+                <br/>
+                {% if thunders %}
+                    {% for thunder in thunders %}
+                        <div class="alert alert-dark" role="alert">
+                          {{ thunder }}
+                        </div><br/><br/>
+                    {% endfor %}
+                {% endif %}
             </div>
+
+
 
             <div class="col-4">
                 <div class="card">
