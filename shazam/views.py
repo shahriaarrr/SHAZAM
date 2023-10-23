@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect
 from django.contrib import messages
-from .models import Profile
+from .models import Profile, Thunder
 # Create your views here.
 
 def home(request):
-    return render(request, 'home.html', {})
+    if request.user.is_authenticated:
+        thunders = Thunder.objects.all().order_by("-created_at")
+    return render(request, 'home.html', {'thunders': thunders})
 
 def profile_list(request):
     if request.user.is_authenticated:
