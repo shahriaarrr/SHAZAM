@@ -57,6 +57,9 @@ def profile(request, pk):
         messages.success(request, ("you must Be logged In to see this page..."))
         return redirect('home')
 
+def signup(request):
+    return render(request, 'signup.html', {})
+
 def login(request):
     if request.method == "POST":
         username = request.POST['username']
