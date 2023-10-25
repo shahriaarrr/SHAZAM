@@ -3,8 +3,9 @@ from django.contrib import messages
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import authenticate
 from django.contrib.auth import logout as auth_logout
+from django.contrib.auth.models import User
 from .models import Profile, Thunder
-from .forms import ThunderForm, SignUpForm
+from .forms import ThunderForm, SignUpForm, UserUpdateForm
 # Create your views here.
 
 def home(request):
@@ -95,5 +96,23 @@ def login(request):
 
 def logout(request):
     auth_logout(request)
-    messages.success(request, (f"Goodbye Hunter, see you soon..."))
+    messages.success(request, ("Goodbye Hunter, see you soon..."))
     return redirect('home')
+
+
+def update_user(request):
+    if request.user.is_authenticated:
+        current_user = User.objects.get(id=request.user.id)
+        form = UserUpdateForm(request.POST or None, instance=current_user)
+
+        if form.is_valid():
+            form.save()
+            auth_login(request, current_user)
+            messages.success(request, "🎉 Your profile has been updated 🎉")
+            return redirect('home')
+
+        return render(request, 'update_user.html', {'form': form})
+    else:
+        messages.error(request, "You must be logged in to see this page.")
+        return redirect('home')
+
