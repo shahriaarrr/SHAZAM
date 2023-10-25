@@ -57,6 +57,11 @@
                         </button>
                     {% endif %}
                 </form>
+                <br/>
+
+        {% if request.user.id == profile.user.id %}
+            <a href="{% url 'update_user' %}" class="btn btn-outline-secondary">Update profile</a>
+        {% endif %}
 
 
 
