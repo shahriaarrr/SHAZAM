@@ -4,7 +4,7 @@ from django.contrib.auth import login as auth_login
 from django.contrib.auth import authenticate
 from django.contrib.auth import logout as auth_logout
 from .models import Profile, Thunder
-from .forms import ThunderForm
+from .forms import ThunderForm, SignUpForm
 # Create your views here.
 
 def home(request):
@@ -57,8 +57,26 @@ def profile(request, pk):
         messages.success(request, ("you must Be logged In to see this page..."))
         return redirect('home')
 
+
 def signup(request):
-    return render(request, 'signup.html', {})
+    form = SignUpForm()
+
+    if request.method == "POST":
+        form = SignUpForm(request.POST)
+
+        if form.is_valid():
+            user = form.save()
+
+            # Authenticate and log in the user
+            username = request.POST['username']
+            password = request.POST['password1']
+            user = authenticate(username=username, password=password)
+            auth_login(request, user)
+
+            messages.success(request, "Your signup was successful⚡. Welcome to the club, Hunter👋")
+            return redirect('home')
+
+    return render(request, 'signup.html', {'form': form})
 
 def login(request):
     if request.method == "POST":
