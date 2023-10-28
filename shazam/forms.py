@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserChangeForm as BaseUserChangeForm
-from .models import Thunder
+from .models import Thunder, Profile
 
 class ThunderForm(forms.ModelForm):
     class Meta:
@@ -73,3 +73,10 @@ class UserUpdateForm(BaseUserChangeForm):
     class Meta:
         model = User
         fields = ('username', 'email', 'first_name', 'last_name', 'password')
+
+class ProfilePicForm(forms.ModelForm):
+    profile_image = forms.ImageField(label="profile img")
+
+    class Meta:
+        model = Profile
+        fields = ("profile_image", )
