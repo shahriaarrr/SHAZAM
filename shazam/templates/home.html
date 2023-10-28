@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
 <div class="container text-center">
@@ -8,10 +9,25 @@
             <br/>
             {% for thunder in thunders %}
                 <div class="alert alert-dark" role="alert">
-                    {{ thunder.text }}<br/>
-                    <small class="text-muted">
-                        {{ thunder.created_at }} By {{ thunder.user.username }}
-                    </small>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-1">
+                                {% if thunder.user.profile.profile_image %}
+                                    <img src="{{ thunder.user.profile.profile_image.url }}"
+                                         width="50" height="50" class="rounded-circle" alt="{{ profile.user.username }}">
+                                {% else %}
+                                    <img src="{% static 'images/default-profile.jpg' %}"
+                                         width="50" height="50" class="rounded-circle" alt="{{ profile.user.username }}">
+                                {% endif %}
+                            </div>
+                            <div class="col-10">
+                                {{ thunder.text }}<br/>
+                                <small class="text-muted">
+                                    {{ thunder.created_at }} By {{ thunder.user.username }}
+                                </small>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             {% endfor %}
         </div>
@@ -19,10 +35,10 @@
         <div class="col-4">
             <div class="text-right" style="margin-top: 50px;">
                 {% if form %}
-                    <form method=POST>
+                    <form method="POST">
                         {% csrf_token %}
                         {{ form.as_p }}
-                      <button type="submit" class="btn btn-secondary">Thunder</button>
+                        <button type="submit" class="btn btn-secondary">Thunder</button>
                     </form>
                 {% endif %}
             </div>
