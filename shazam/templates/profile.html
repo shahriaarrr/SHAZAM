@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
     <div class="container text-center">
@@ -9,16 +10,29 @@
                 {% if thunders %}
                     {% for thunder in thunders %}
                         <div class="alert alert-dark" role="alert">
-                            {{ thunder.text }}<br/>
-                            <small class="text-muted">
-                                {{ thunder.created_at }} By {{ thunder.user.username }}
-                            </small>
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-1">
+                                        {% if profile.profile_image%}
+                                            <img src="{{ profile.profile_image.url }}" width="50" height="50"
+                                            class="rounded-circle" alt="{{ profile.user.username }}">
+                                        {% else %}
+                                            <img src="{% static 'images/default-profile.jpg' %}" width="50" height="50"
+                                            class="rounded-circle" alt="{{ profile.user.username }}">
+                                        {% endif %}
+                                    </div>
+                                    <div class="col-10">
+                                        {{ thunder.text }}<br/>
+                                        <small class="text-muted">
+                                            {{ thunder.created_at }} By {{ thunder.user.username }}
+                                        </small>
+                                    </div>
+                                </div>
+                            </div>
                         </div><br/>
                     {% endfor %}
                 {% endif %}
             </div>
-
-
 
             <div class="col-4">
                 {% if profile.profile_image %}
@@ -26,30 +40,30 @@
                     <br/><br/>
                 {% endif %}
                 <div class="card">
-                  <h5 class="card-header">Hunters</h5>
-                  <div class="card-body">
-                    <p class="card-text">
-                        {% for hunting in profile.hunters.all %}
-                            <a href="{% url 'profile' hunting.user.id %}">@{{ hunting }}<a/><br/>
-                        {% endfor %}
-                    </p>
-                  </div>
+                    <h5 class="card-header">Hunters</h5>
+                    <div class="card-body">
+                        <p class="card-text">
+                            {% for hunting in profile.hunters.all %}
+                                <a href="{% url 'profile' hunting.user.id %}">{{ hunting }}</a><br/>
+                            {% endfor %}
+                        </p>
+                    </div>
                 </div>
                 <br/>
 
                 <div class="card">
-                  <h5 class="card-header">Hunted By</h5>
-                  <div class="card-body">
-                    <p class="card-text">
-                        {% for hunting in profile.hunted_by.all %}
-                            <a href="{% url 'profile' hunting.user.id %}">@{{ hunting }}<a/><br/>
-                        {% endfor %}
-                    </p>
-                  </div>
+                    <h5 class="card-header">Hunted By</h5>
+                    <div class="card-body">
+                        <p class="card-text">
+                            {% for hunting in profile.hunted_by.all %}
+                                <a href="{% url 'profile' hunting.user.id %}">{{ hunting }}</a><br/>
+                            {% endfor %}
+                        </p>
+                    </div>
                 </div>
                 <br/>
 
-                <form method=POST>
+                <form method="POST">
                     {% csrf_token %}
                     {% if profile in user.profile.hunters.all %}
                         <button class="btn btn-outline-danger" name="hunt" value="unhunt" type="submit">
@@ -63,18 +77,10 @@
                 </form>
                 <br/>
 
-        {% if request.user.id == profile.user.id %}
-            <a href="{% url 'update_user' %}" class="btn btn-outline-secondary">Update profile</a>
-        {% endif %}
-
-
-
-            <div/>
-        <div/>
-    <div/>
-
-
-
-
-
+                {% if request.user.id == profile.user.id %}
+                    <a href="{% url 'update_user' %}" class="btn btn-outline-secondary">Update profile</a>
+                {% endif %}
+            </div>
+        </div>
+    </div>
 {% endblock %}
