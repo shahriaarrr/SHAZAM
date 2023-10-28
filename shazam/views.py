@@ -39,7 +39,7 @@ def profile_list(request):
 def profile(request, pk):
     if request.user.is_authenticated:
         profile = Profile.objects.get(user_id=pk)
-        thunders = Thunder.objects.filter(user_id=pk)
+        thunders = Thunder.objects.filter(user_id=pk).order_by("-created_at")
 
         #post form
         if request.method == "POST":
