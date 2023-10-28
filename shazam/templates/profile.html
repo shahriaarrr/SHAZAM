@@ -21,6 +21,10 @@
 
 
             <div class="col-4">
+                {% if profile.profile_image %}
+                    <img src="{{ profile.profile_image.url }}" width="200" alt="Profile Image">
+                    <br/><br/>
+                {% endif %}
                 <div class="card">
                   <h5 class="card-header">Hunters</h5>
                   <div class="card-body">
@@ -31,7 +35,7 @@
                     </p>
                   </div>
                 </div>
-                <br/><br/>
+                <br/>
 
                 <div class="card">
                   <h5 class="card-header">Hunted By</h5>
