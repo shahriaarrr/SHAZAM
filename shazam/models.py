@@ -6,6 +6,10 @@ class Thunder(models.Model):
     user = models.ForeignKey(User, related_name="thunder", on_delete=models.CASCADE)
     text = models.CharField(max_length=313)
     created_at = models.DateTimeField(auto_now_add=True)
+    likes = models.ManyToManyField(User, related_name="Thunder_like", blank=True)
+
+    def number_of_likes(self):
+        return self.likes.count()
 
     def __str__(self):
         return (
