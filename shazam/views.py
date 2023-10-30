@@ -129,8 +129,9 @@ def update_user(request):
 def thunder_likes(request, pk):
     if request.user.is_authenticated:
         thunder = get_object_or_404(Thunder, id=pk)
-        if thunder.likes.filter(id=request.user.id):
-            thunder.likes.reverse(request.user)
+
+        if thunder.likes.filter(id=request.user.id).exists():
+            thunder.likes.remove(request.user)
         else:
             thunder.likes.add(request.user)
 
