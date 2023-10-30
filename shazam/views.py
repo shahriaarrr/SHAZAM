@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from django.contrib.auth import login as auth_login
 from django.contrib.auth import authenticate
@@ -121,6 +121,21 @@ def update_user(request):
             return redirect('home')
 
         return render(request, "update_user.html", {'user_form': user_form, 'profile_form': profile_form})
+    else:
+        messages.error(request, "You must be logged in to see this page.")
+        return redirect('home')
+
+
+def thunder_likes(request, pk):
+    if request.user.is_authenticated:
+        thunder = get_object_or_404(Thunder, id=pk)
+        if thunder.likes.filter(id=request.user.id):
+            thunder.likes.reverse(request.user)
+        else:
+            thunder.likes.add(request.user)
+
+        return redirect('home')
+
     else:
         messages.error(request, "You must be logged in to see this page.")
         return redirect('home')
