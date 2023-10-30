@@ -135,7 +135,7 @@ def thunder_likes(request, pk):
         else:
             thunder.likes.add(request.user)
 
-        return redirect('home')
+        return redirect(request.META.get('HTTP_REFERER'))
 
     else:
         messages.error(request, "You must be logged in to like thunders.")
