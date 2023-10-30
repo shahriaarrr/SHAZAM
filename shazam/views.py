@@ -138,5 +138,5 @@ def thunder_likes(request, pk):
         return redirect('home')
 
     else:
-        messages.error(request, "You must be logged in to see this page.")
+        messages.error(request, "You must be logged in to like thunders.")
         return redirect('home')
