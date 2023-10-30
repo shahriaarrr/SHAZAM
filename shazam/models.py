@@ -25,6 +25,14 @@ class Profile(models.Model):
     hunters = models.ManyToManyField('self', related_name="hunted_by", symmetrical=False, blank=True)
     date_modified = models.DateTimeField(User, auto_now=True)
     profile_image = models.ImageField(null=True, blank=True, upload_to='images/')
+    #profile bio
+    bio = models.CharField(max_length=170, null=True, blank=True)
+    # all social links
+    website = models.CharField(max_length=170, null=True, blank=True)
+    social_instagram = models.CharField(max_length=170, null=True, blank=True)
+    social_steam = models.CharField(max_length=170, null=True, blank=True)
+    social_github = models.CharField(max_length=170, null=True, blank=True)
+    social_linkedin = models.CharField(max_length=170, null=True, blank=True)
 
     def __str__(self):
         return self.user.username
