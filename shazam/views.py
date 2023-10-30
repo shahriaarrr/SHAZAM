@@ -140,3 +140,13 @@ def thunder_likes(request, pk):
     else:
         messages.error(request, "You must be logged in to like thunders.")
         return redirect('home')
+
+
+def thunder_show(request, pk):
+    thunder = get_object_or_404(Thunder, id=pk)
+
+    if thunder:
+        return render(request, 'show_thunder.html', {'thunder':thunder})
+    else:
+        messages.error(request, "That thunder dose not exist💀")
+        return redirect('home')
