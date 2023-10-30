@@ -24,6 +24,13 @@
                                 {{ thunder.text }}<br/>
                                 <small class="text-muted">
                                     {{ thunder.created_at }} By {{ thunder.user.username }}
+                                    - {{ thunder.number_of_likes }} likes
+
+                                    {% if user in thunder.likes.all %}
+                                        <a href="{% url 'thunder_like' thunder.id %}">UnLike</a>
+                                    {% else %}
+                                        <a href="{% url 'thunder_like' thunder.id %}">Like</a>
+                                    {% endif %}
                                 </small>
                             </div>
                         </div>
