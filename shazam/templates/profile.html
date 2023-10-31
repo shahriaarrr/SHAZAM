@@ -97,7 +97,7 @@
                         <p class="card-text">
                             {% for hunting in profile.hunters.all %}
                                 <a href="{% url 'profile' hunting.user.id %}">{{ hunting }}</a
-                                > <a href="{% url 'unhunt' hunting.user.id %}"><i class="fa fa-undo small" style="color: rgb(128,128,128)"></i></a><br/>
+                                > <a href="{% url 'unhunt' hunting.user.id %}"><i class="fa-solid fa-circle-minus small" style="color: rgb(128,128,128)"></i></a><br/>
                             {% endfor %}
                         </p>
                     </div>
@@ -110,7 +110,17 @@
                         <p class="card-text">
                             {% for hunting in profile.hunted_by.all %}
                                 <a href="{% url 'profile' hunting.user.id %}">{{ hunting }}</a
-                                ><br/>
+                                >&nbsp;&nbsp;
+                                {% if hunting in profile.hunters.all %}
+                                    <a href="{% url 'unhunt' hunting.user.id %}">
+                                        <i class="fa fa-user-minus small" style="color: rgb(128,128,128)"></i>
+                                    </a>
+                                {% else %}
+                                    <a href="{% url 'hunt' hunting.user.id %}">
+                                        <i class="fa fa-user-plus small" style="color: rgb(128,128,128)"></i>
+                                    </a>
+                                {% endif %}
+                                <br/>
                             {% endfor %}
                         </p>
                     </div>
