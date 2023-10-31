@@ -75,43 +75,43 @@ class UserUpdateForm(BaseUserChangeForm):
         fields = ('username', 'email', 'first_name', 'last_name', 'password')
 
 class ProfilePicForm(forms.ModelForm):
-    profile_image = forms.ImageField(label="profile img")
+    profile_image = forms.ImageField(label="profile img", required=False)
     bio = forms.CharField(label="bio", widget=forms.Textarea(
         attrs={
             'class': 'form-control',
             'placeholder': 'tell us about yourself :)'
         }
-    ))
+    ), required=False)
     website = forms.CharField(label="website", widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'https://example.domain'
         }
-    ))
+    ), required=False)
     social_instagram = forms.CharField(label="instagram", widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'your instagram username without @'
         }
-    ))
+    ), required=False)
     social_steam = forms.CharField(label="steam", widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'steam username'
         }
-    ))
-    social_github = forms.CharField(label="steam", widget=forms.TextInput(
+    ), required=False)
+    social_github = forms.CharField(label="github", widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'github username'
         }
-    ))
+    ), required=False)
     social_linkedin = forms.CharField(label="linkedin", widget=forms.TextInput(
         attrs={
             'class': 'form-control',
             'placeholder': 'example: https://linkedin.com/in/<username>'
         }
-    ))
+    ), required=False)
 
     class Meta:
         model = Profile
