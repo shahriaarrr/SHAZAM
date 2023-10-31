@@ -11,5 +11,6 @@ urlpatterns = [
     path('update_user/', views.update_user, name='update_user'),
     path('thunder_like/<int:pk>', views.thunder_likes, name="thunder_like"),
     path('thunder_show/<int:pk>', views.thunder_show, name="thunder_show"),
+    path('hunt/<int:pk>', views.hunt, name="hunt"),
     path('unhunt/<int:pk>', views.unhunt, name="unhunt"),
 ]
