@@ -150,3 +150,16 @@ def thunder_show(request, pk):
     else:
         messages.error(request, "That thunder dose not exist💀")
         return redirect('home')
+
+
+def unhunt(request, pk):
+    if request.user.is_authenticated:
+        profile = Profile.objects.get(id=pk)
+        request.user.profile.hunters.remove(profile)
+        request.user.profile.save()
+
+        messages.success(request, f"You have successfully unhunt {profile.user.username}")
+        return redirect(request.META.get('HTTP_REFERER'))
+    else:
+        messages.error(request, "You must be logged in to do this action.")
+        return redirect('home')
