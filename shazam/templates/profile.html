@@ -17,6 +17,7 @@
                                             <img src="{{ profile.profile_image.url }}" width="50" height="50"
                                             class="rounded-circle" alt="{{ profile.user.username }}">
                                         {% else %}
+
                                             <img src="{% static 'images/default-profile.jpg' %}" width="50" height="50"
                                             class="rounded-circle" alt="{{ profile.user.username }}">
                                         {% endif %}
@@ -53,6 +54,37 @@
                     <img src="{{ profile.profile_image.url }}" width="250" alt="Profile Image" class="rounded-circle">
                     <br/><br/>
                 {% endif %}
+
+                {% if profile.website %}
+                    <a href="{{ profile.website }}" target="new">
+                        <i class="fa-solid fa-link"></i></a>
+                    &nbsp;&nbsp;
+                {% endif %}
+
+                {% if profile.social_instagram %}
+                    <a href="https://instagram.com/{{ profile.social_instagram }}" target="new">
+                        <i class="fa-brands fa-instagram"></i></a>
+                    &nbsp;&nbsp;
+                {% endif %}
+
+                {% if profile.social_steam %}
+                    <a href="https://steamcommunity.com/id/{{ profile.social_steam }}/" target="new">
+                        <i class="fa-brands fa-steam-symbol"></i></a>
+                    &nbsp;&nbsp;
+                {% endif %}
+
+                {% if profile.social_github %}
+                    <a href="https://github.com/{{ profile.social_github }}" target="new">
+                        <i class="fa-brands fa-github"></i></a>
+                    &nbsp;&nbsp;
+                {% endif %}
+
+                {% if profile.social_linkedin %}
+                    <a href="{{ profile.social_linkedin }}" target="new">
+                        <i class="fa-brands fa-linkedin-in"></i></a>
+                    &nbsp;&nbsp;
+                {% endif %}
+
                 <div class="card">
                     <h5 class="card-header">Hunters</h5>
                     <div class="card-body">
