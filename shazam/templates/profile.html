@@ -84,6 +84,12 @@
                         <i class="fa-brands fa-linkedin-in"></i></a>
                     &nbsp;&nbsp;
                 {% endif %}
+                <br/><br/>
+                {% if profile.bio %}
+                    <p align="justify">
+                        {{ profile.bio }}
+                    </p>
+                {% endif %}
 
                 <div class="card">
                     <h5 class="card-header">Hunters</h5>
