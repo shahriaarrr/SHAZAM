@@ -108,7 +108,7 @@
                     <h5 class="card-header">Hunted By</h5>
                     <div class="card-body">
                         <p class="card-text">
-                            {% for hunting in profile.hunted_by.all %}
+                            {% for hunting in profile.hunted_by.all|slice:3 %}
                                 <a href="{% url 'profile' hunting.user.id %}">{{ hunting }}</a
                                 >&nbsp;&nbsp;
                                 {% if hunting in profile.hunters.all %}
@@ -122,7 +122,13 @@
                                 {% endif %}
                                 <br/>
                             {% endfor %}
+                            <br/>
                         </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{% url 'hunters' profile.user.id %}">
+                            more...
+                        </a>
                     </div>
                 </div>
                 <br/>
