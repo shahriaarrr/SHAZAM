@@ -13,4 +13,6 @@ urlpatterns = [
     path('thunder_show/<int:pk>', views.thunder_show, name="thunder_show"),
     path('hunt/<int:pk>', views.hunt, name="hunt"),
     path('unhunt/<int:pk>', views.unhunt, name="unhunt"),
+    path('profile/hunters/<int:pk>', views.hunters, name='hunters'),
+
 ]
