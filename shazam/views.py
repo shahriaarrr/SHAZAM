@@ -190,3 +190,17 @@ def hunters(request, pk):
     else:
         messages.error(request, ("you must Be logged In to see this page..."))
         return redirect('home')
+
+
+def hunts(request, pk):
+    if request.user.is_authenticated:
+        if request.user.id == pk:
+
+            profiles = Profile.objects.get(user_id=pk)
+            return render(request, 'hunts.html', {"profiles": profiles})
+        else:
+            messages.error(request, ("That's not your profile page..."))
+            return redirect('home')
+    else:
+        messages.error(request, ("you must Be logged In to see this page..."))
+        return redirect('home')

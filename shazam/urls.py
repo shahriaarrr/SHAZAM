@@ -14,5 +14,6 @@ urlpatterns = [
     path('hunt/<int:pk>', views.hunt, name="hunt"),
     path('unhunt/<int:pk>', views.unhunt, name="unhunt"),
     path('profile/hunters/<int:pk>', views.hunters, name='hunters'),
+    path('profile/hunts/<int:pk>', views.hunts, name='hunts'),
 
 ]
