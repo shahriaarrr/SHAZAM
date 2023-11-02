@@ -29,17 +29,14 @@
                                             &nbsp; {{ thunder.number_of_likes }} likes
                                             {% if user in thunder.likes.all %}
                                                 <a href="{% url 'thunder_like' thunder.id %}">
-                                                    <i class="fa-solid fa-heart" style="color:red"></i>
-                                                </a>
+                                                    <i class="fa-solid fa-heart" style="color:red"></i></a>
                                             {% else %}
                                                 <a href="{% url 'thunder_like' thunder.id %}">
-                                                    <i class="fa fa-heart-o" style="color:red"></i>
-                                                </a>
+                                                    <i class="fa fa-heart-o" style="color:red"></i></a>
                                             {% endif %}
                                             &nbsp;
                                             <a href="{% url 'thunder_show' thunder.id %}">
-                                                <i class="fa-solid fa-share" style="color: cornflowerblue"></i>
-                                            </a>
+                                                <i class="fa-solid fa-share" style="color: cornflowerblue"></i></a>
                                         </small>
                                     </div>
                                 </div>
