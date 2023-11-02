@@ -37,6 +37,11 @@
                                             &nbsp;
                                             <a href="{% url 'thunder_show' thunder.id %}">
                                                 <i class="fa-solid fa-share" style="color: cornflowerblue"></i></a>
+
+                                            {% if request.user.username == profile.user.username %}
+                                                <a href="{% url 'delete_thunder' thunder.id %}">
+                                                    <i class="fa-solid fa-trash" style="color: rgb(128,128,128)"></i></a>
+                                            {% endif %}
                                         </small>
                                     </div>
                                 </div>
