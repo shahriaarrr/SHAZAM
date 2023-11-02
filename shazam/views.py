@@ -152,6 +152,22 @@ def thunder_show(request, pk):
         return redirect('home')
 
 
+def delete_thunder(request, pk):
+    if request.user.is_authenticated:
+        thunder = get_object_or_404(Thunder, id=pk)
+        if request.user.username == thunder.user.username:
+            thunder.delete()
+            messages.success(request, "the thunder has been deleted👍.")
+            return redirect(request.META.get('HTTP_REFERER'))
+        else:
+            messages.error(request, "that's not your thunder.")
+            return redirect('home')
+
+    else:
+        messages.error(request, "You must be logged in to do this action.")
+        return redirect(request.META.get('HTTP_REFERER'))
+
+
 def hunt(request, pk):
     if request.user.is_authenticated:
         profile = Profile.objects.get(id=pk)
